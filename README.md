@@ -23,13 +23,150 @@ An important step before diving into the analysis of Internet Sales analysis is 
 I've prepared the data for analysis using the following SQL queries. These queries ensure the data is clean and accurate for our internet sales analysis.
 
 **DIM_Calendar**
-
+```c
+SELECT [DateKey]
+      ,[FullDateAlternateKey] as Date
+      --,[DayNumberOfWeek]
+      ,[EnglishDayNameOfWeek] as Day
+      --,[SpanishDayNameOfWeek]
+      --,[FrenchDayNameOfWeek]
+      --,[DayNumberOfMonth]
+      --,[DayNumberOfYear]
+      --,[WeekNumberOfYear]
+      ,LEFT([EnglishMonthName],3) as Month
+      --,[SpanishMonthName]
+      --,[FrenchMonthName]
+      ,[MonthNumberOfYear] as MonthNo
+      ,[CalendarQuarter] as Quarter 
+      ,[CalendarYear]as Year
+      --,[CalendarSemester]
+      --,[FiscalQuarter]
+      --,[FiscalYear]
+      --,[FiscalSemester]
+  FROM dbo.DimDate
+  WHERE CalendarYear>=2022
+```
 **DIM_Customers**
-
+```c
+--Cleansed Dim_Customers Table--
+SELECT c.CustomerKey as CustomerKey
+      --,[GeographyKey]
+      --,[CustomerAlternateKey]
+      --,[Title]
+      ,c.FirstName as [First Name]
+      --,[MiddleName]
+      ,c.LastName as [Last Name]
+	  ,c.FirstName +' '+c.LastName as [Full Name]
+      --,[NameStyle]
+      --,[BirthDate]
+      --,[MaritalStatus]
+      --,[Suffix]
+      ,CASE c.Gender WHEN 'M' THEN 'Male' WHEN 'F' THEN 'Female' END as Gender
+      --,[EmailAddress]
+      --,[YearlyIncome]
+      --,[TotalChildren]
+      --,[NumberChildrenAtHome]
+      --,[EnglishEducation]
+      --,[SpanishEducation]
+      --,[FrenchEducation]
+      --,[EnglishOccupation]
+      --,[SpanishOccupation]
+      --,[FrenchOccupation]
+      --,[HouseOwnerFlag]
+      --,[NumberCarsOwned]
+      --,[AddressLine1]
+      --,[AddressLine2]
+      --,[Phone]
+      ,c.DateFirstPurchase as DateFirstPurchase
+      --,[CommuteDistance]
+	  ,g.City as [Customer City]
+	  ,g.EnglishCountryRegionName as Country
+  FROM dbo.DimCustomer as c 
+       LEFT JOIN dbo.DimGeography as g 
+	   ON g.GeographyKey = c.GeographyKey
+  ORDER BY CustomerKey --Order list by CustomerKey
+```
 **DIM_Products**
-
+```c
+--Cleansed Dim_Product Table--
+SELECT [ProductKey]
+      ,[ProductAlternateKey] as ProductItemCode
+      --,[ProductSubcategoryKey]
+      --,[WeightUnitMeasureCode]
+      --,[SizeUnitMeasureCode]
+      ,[EnglishProductName] as [Product Name]
+	  ,[EnglishProductCategoryName] as [Product Cate] --Join table
+	  ,[EnglishProductSubcategoryName] as [Product Sub] --Join table
+      --,[SpanishProductName]
+      --,[FrenchProductName]
+      --,[StandardCost]
+      --,[FinishedGoodsFlag]
+      ,[Color] as [Product Color]
+      --,[SafetyStockLevel]
+      --,[ReorderPoint]
+      --,[ListPrice]
+      ,[Size] as[Product Size]
+      --,[SizeRange]
+      --,[Weight]
+      --,[DaysToManufacture]
+      ,[ProductLine] as [Product Line]
+      --,[DealerPrice]
+      --,[Class]
+      --,[Style]
+      ,[ModelName] as [Product Model Name]
+      --,[LargePhoto]
+      ,[EnglishDescription] as [Product Description]
+      --,[FrenchDescription]
+      --,[ChineseDescription]
+      --,[ArabicDescription]
+      --,[HebrewDescription]
+      --,[ThaiDescription]
+      --,[GermanDescription]
+      --,[JapaneseDescription]
+      --,[TurkishDescription]
+      --,[StartDate]
+      --,[EndDate]
+	  --,Status as Test --Check Status
+      ,ISNULL(Status,'Outdated') as [Product Status]
+  FROM [AdventureWorksDW2022].[dbo].[DimProduct] as p
+	LEFT JOIN DimProductSubcategory as s
+	ON p.ProductSubcategoryKey = s.ProductSubcategoryKey
+	LEFT JOIN DimProductCategory as c
+	ON s.ProductCategoryKey = c.ProductCategoryKey
+ORDER BY ProductKey
+```
 **FACT_InternetSales**
-
+```c
+SELECT [ProductKey]
+      ,[OrderDateKey]
+      ,[DueDateKey]
+      ,[ShipDateKey]
+      ,[CustomerKey]
+      --,[PromotionKey]
+      --,[CurrencyKey]
+      --,[SalesTerritoryKey]
+      ,[SalesOrderNumber]
+      --,[SalesOrderLineNumber]
+      --,[RevisionNumber]
+      --,[OrderQuantity]
+      --,[UnitPrice]
+      --,[ExtendedAmount]
+      --,[UnitPriceDiscountPct]
+      --,[DiscountAmount]
+      --,[ProductStandardCost]
+      --,[TotalProductCost]
+      ,[SalesAmount]
+      --,[TaxAmt]
+      --,[Freight]
+      --,[CarrierTrackingNumber]
+      --,[CustomerPONumber]
+      --,[OrderDate]
+      --,[DueDate]
+      --,[ShipDate]
+  FROM [AdventureWorksDW2022].[dbo].[FactInternetSales]
+  WHERE LEFT(OrderDateKey,4) >= YEAR(GETDATE()) - 2
+  ORDER BY OrderDateKey
+```
 ## 3. Data Model and Data Analysis
 ### a.Data Analysis
 - Budget amount
@@ -40,11 +177,7 @@ If the profit is positive (greater than zero), the company is making money and i
 If the profit is negative (less than zero), the company is losing money and is considered unprofitable.
 
 ### b.Data Visualization
-The interactive sales management dashboard offers sales managers a centralized view of key metrics. It provides an overview page showcasing overview of sales performance, followed by dedicated pages that allow for deeper dives into customer data and product data trends over time. This allows sales managers to make informed decisions quickly and effectively.
-
-**Sales Management Dashboard**
-**Customers Detail Dashboard**
-**Products Detail Dashboard**
+[The interactive sales management dashboard](https://app.powerbi.com/view?r=eyJrIjoiYzg5YmM0YmUtNjA2ZS00YWZmLWEzYTUtODVkNzQ0ZTFkNzdhIiwidCI6ImMzYWYzODY0LWU2NjgtNDZkZS04NzQ4LTkzZTRjMzk2M2E4NiIsImMiOjEwfQ%3D%3D) offers sales managers a centralized view of key metrics. It provides an overview page showcasing overview of sales performance, followed by dedicated pages that allow for deeper dives into customer data and product data trends over time. 
 ## 4. Recommendations and Actionable Steps
 The increasing number of customers and orders indicates a growing demand for the company's products.
 
