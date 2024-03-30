@@ -49,18 +49,18 @@ The interactive sales management dashboard offers sales managers a centralized v
 The increasing number of customers and orders indicates a growing demand for the company's products.
 
 ### Regional Analysis
-The United States is the country with the highest revenue over the years, followed by Australia and Canada.</b>
-France has the top customers with the highest spending.
+- The United States is the country with the highest revenue over the years, followed by Australia and Canada.</b>
+- France has the top customers with the highest spending.
 
 ### Product Analysis
-The Bike category generates the highest revenue over the years.</b>
-The top revenue-generating products belong to the Bike category and are mainly Mountain and Road bikes in Black and Silver colors.
+- The Bike category generates the highest revenue over the years.</b>
+- The top revenue-generating products belong to the Bike category and are mainly Mountain and Road bikes in Black and Silver colors.
 
 ### Conclusion
-The United States is the most potential market with the highest revenue over the data consolidation period.</b>
-Bike products, especially the Mountain bike line, are the company's main products.</b>
-The percentage of new customers is increasing.
+- The United States is the most potential market with the highest revenue over the data consolidation period.</b>
+- Bike products, especially the Mountain bike line, are the company's main products.</b>
+- The percentage of new customers is increasing.
 
 ### Recommendations
-It is necessary to maintain operations in the US and expand activities in the two potential countries of Australia and Canada. In particular, France has the top customers with high spending but a small number of customers, so it needs to be focused on attracting more customers.</b>
-The popular Bike product line needs to remain the quality and continuously invested in to dominate the market.
+- It is necessary to maintain operations in the US and expand activities in the two potential countries of Australia and Canada. In particular, France has the top customers with high spending but a small number of customers, so it needs to be focused on attracting more customers.</b>
+- The popular Bike product line needs to remain the quality and continuously invested in to dominate the market.
