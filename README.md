@@ -168,7 +168,10 @@ SELECT [ProductKey]
   ORDER BY OrderDateKey
 ```
 ## 3. Data Model and Data Analysis
-### a.Data Analysis
+### a.Data Modeling
+![Modeling_AdventureWorks](https://github.com/user-attachments/assets/a6b41c02-eadb-4263-a884-3ac8319d7ae0)
+
+### b.Data Analysis
 - Budget amount
 Revenue
 Profit
@@ -176,8 +179,9 @@ Profit = Revenue – Budget
 If the profit is positive (greater than zero), the company is making money and is considered profitable.</b>
 If the profit is negative (less than zero), the company is losing money and is considered unprofitable.
 
-### b.Data Visualization
-[The interactive sales management dashboard](https://app.powerbi.com/view?r=eyJrIjoiYzg5YmM0YmUtNjA2ZS00YWZmLWEzYTUtODVkNzQ0ZTFkNzdhIiwidCI6ImMzYWYzODY0LWU2NjgtNDZkZS04NzQ4LTkzZTRjMzk2M2E4NiIsImMiOjEwfQ%3D%3D) offers sales managers a centralized view of key metrics. It provides an overview page showcasing overview of sales performance, followed by dedicated pages that allow for deeper dives into customer data and product data trends over time. 
+### c.Data Visualization
+[The interactive sales management dashboard](https://app.powerbi.com/view?r=eyJrIjoiNDU3YmI2M2YtZmNmNy00YzRiLTljNTYtZjYyYzdhOGI5Zjk1IiwidCI6ImMzYWYzODY0LWU2NjgtNDZkZS04NzQ4LTkzZTRjMzk2M2E4NiIsImMiOjEwfQ%3D%3D&pageName=0ea884ee4128422a7e40)
+offers sales managers a centralized view of key metrics. It provides an overview page showcasing overview of sales performance, followed by dedicated pages that allow for deeper dives into customer data and product data trends over time. 
 ## 4. Recommendations and Actionable Steps
 The increasing number of customers and orders indicates a growing demand for the company's products.
 
